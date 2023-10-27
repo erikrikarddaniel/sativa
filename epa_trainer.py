@@ -372,10 +372,15 @@ class RefTreeBuilder:
         
         self.cfg.log.debug("\nConstrained ML inference: \n")
         raxml_params = ["-s", self.reduced_refalign_fname, "-g", self.reftree_mfu_fname, "--no-seq-check", "-N", str(self.cfg.rep_num)] 
+        self.cfg.log.debug("\n--> raxml_params: ")
         if self.cfg.mfresolv_method  == "fast":
             raxml_params += ["-D"]
         elif self.cfg.mfresolv_method  == "ultrafast":
             raxml_params += ["-f", "e"]
+
+        #self.cfg.log.debug("\nraxml_params: %s", raxml_params)
+        self.cfg.log.debug("\nraxml_params: ")
+
         if self.cfg.restart:
             # resuming SATIVA execution
             if self.raxml_wrapper.besttree_exists(self.mfresolv_job_name):
@@ -391,6 +396,9 @@ class RefTreeBuilder:
 #            self.invocation_raxml_multif = self.raxml_wrapper.run_multiple(self.mfresolv_job_name, raxml_params, self.cfg.rep_num)
             if self.cfg.mfresolv_method  == "ultrafast":
               self.raxml_wrapper.copy_result_tree(self.mfresolv_job_name, self.raxml_wrapper.besttree_fname(self.mfresolv_job_name))
+
+        #self.cfg.log.debug("\n\tRAXML done, self.mfresolv_job_name: %s", self.mfresolv_job_name)
+        self.cfg.log.debug("\n\tRAXML done")
               
         if self.raxml_wrapper.besttree_exists(self.mfresolv_job_name):        
             if self.cfg.reopt_model:
