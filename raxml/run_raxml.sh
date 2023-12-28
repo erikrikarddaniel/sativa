@@ -34,6 +34,8 @@ find . -name "raxml*"
 find $BASEDIR -name "raxml*"
 echo "done searching, listing working directory $(pwd)"
 ls -l
+echo "listing $BASEDIR"
+ls -l $BASEDIR
 echo "done listing"
 
 if cpu_has_feature avx2 && can_run ${RAXML_STEM}-AVX2.PTHREADS; then
