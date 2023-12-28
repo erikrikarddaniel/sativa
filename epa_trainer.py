@@ -382,6 +382,7 @@ class RefTreeBuilder:
         self.cfg.log.debug("\nraxml_params: ")
 
         if self.cfg.restart:
+            self.cfg.log.debug("\t--> Restarting <--")
             # resuming SATIVA execution
             if self.raxml_wrapper.besttree_exists(self.mfresolv_job_name):
                 # if we already have a resolved tree, just use it and proceed to the next step
