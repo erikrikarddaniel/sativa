@@ -40,6 +40,9 @@ case `uname` in
         export DARWIN=0
         GCC_VERSION=`gcc -dumpversion`
         COMPILER_NAME="gcc $GCC_VERSION"
+        echo "Compiler, version: $GCC_VERSION"
+        GCC_VERSION=`gcc -dumpversion | sed 's/\..*//'`
+        echo "Version now: $GCC_VERSION"
         if [ "$GCC_VERSION" \> "4.6.0" ] || [ "$GCC_VERSION" = "4.6.0" ] || [ "$GCC_VERSION" = "4.6" ] || [ "$GCC_VERSION" -ge 5 ]; then
            export USE_AVX=yes
         fi
