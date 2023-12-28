@@ -421,10 +421,9 @@ class RefTreeBuilder:
             print("--> ERROR in RAxML <--", file = sys.stderr)
             errmsg = "RAxML run failed (mutlifurcation resolution), please examine the log for details: %s" \
                     % self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name)
-            fo = open(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name))
-            print(fo.read, file = sys.stderr)
+            fc = open(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name), 'r').read()
+            print(fc, file = sys.stderr)
             #print(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name), file = sys.stderr)
-            fo.close()
             self.cfg.exit_fatal_error(errmsg)
             
     def load_reduced_refalign(self):
