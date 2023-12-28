@@ -382,7 +382,6 @@ class RefTreeBuilder:
         self.cfg.log.debug("\nraxml_params: ")
 
         if self.cfg.restart:
-            self.cfg.log.debug("\t--> Restarting <--")
             # resuming SATIVA execution
             if self.raxml_wrapper.besttree_exists(self.mfresolv_job_name):
                 # if we already have a resolved tree, just use it and proceed to the next step
@@ -422,6 +421,7 @@ class RefTreeBuilder:
         else:
             errmsg = "RAxML run failed (mutlifurcation resolution), please examine the log for details: %s" \
                     % self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name)
+            print(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name))
             self.cfg.exit_fatal_error(errmsg)
             
     def load_reduced_refalign(self):
