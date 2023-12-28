@@ -42,4 +42,5 @@ else
     exit -1
 fi
 
+echo "RAxML binary: $RAXML, version: $($RAXML --version)"
 $RAXML $@
