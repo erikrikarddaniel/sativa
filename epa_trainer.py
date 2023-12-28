@@ -392,7 +392,6 @@ class RefTreeBuilder:
                 self.invocation_raxml_multif = self.raxml_wrapper.restart_from_checkpoint(self.mfresolv_job_name, raxml_params)
         else:
             # start raxml anew
-            self.cfg.log.debug("\t--> Starting anew <--")
             self.invocation_raxml_multif = self.raxml_wrapper.run(self.mfresolv_job_name, raxml_params)
 #            self.invocation_raxml_multif = self.raxml_wrapper.run_multiple(self.mfresolv_job_name, raxml_params, self.cfg.rep_num)
             if self.cfg.mfresolv_method  == "ultrafast":
@@ -422,7 +421,10 @@ class RefTreeBuilder:
             print("--> ERROR in RAxML <--", file = sys.stderr)
             errmsg = "RAxML run failed (mutlifurcation resolution), please examine the log for details: %s" \
                     % self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name)
-            print(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name), file = sys.stderr)
+            fo = open(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name))
+            print(fo.read, file = sys.stderr)
+            #print(self.raxml_wrapper.make_raxml_fname("output", self.mfresolv_job_name), file = sys.stderr)
+            fo.close()
             self.cfg.exit_fatal_error(errmsg)
             
     def load_reduced_refalign(self):
