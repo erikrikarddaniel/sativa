@@ -31,6 +31,7 @@ BASEDIR=$(dirname $0)
 RAXML_STEM="${BASEDIR}/raxmlHPC8"
 echo "Searching for RAxML binary, RAXML_STEM: $RAXML_STEM"
 find . -name "raxml*"
+find $BASEDIR -name "raxml*"
 echo "done searching, listing working directory $(pwd)"
 ls -l
 echo "done listing"
